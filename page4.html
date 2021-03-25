@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HTML_1116</title>
+	
+	<script>
+		function f(loc) {
+			var str = "https://www.google.com.tw/maps?f=q&hl=zh-TW&q="+loc+"&z=16&t=q&output=embed";
+			document.getElementById("demo").setAttribute("src", str); 
+		}
+		function GetUrlVar(VarName) {
+		  name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+		  var regexS = "[\\?&]" + VarName + "=([^&#]*)";
+		  var regex = new RegExp(regexS);
+		  var results = regex.exec(window.location.href);
+		  if (results == null)
+		   	 return "";
+		  else
+			 return results[1];
+		}
+	</script>
+	
+    
+  </head>
+  <body>
+	
+	<a href="javascript:f('24.121308,120.677175') ; ">地點一</a>
+	<a href="javascript:f('24.128835,120.664931') ; ">地點二</a>
+	<iframe id="demo" src="https://www.google.com.tw/maps?f=q&hl=zh-TW&q=24.121308,120.677175&z=16&t=q&output=embed" height="800" width="1200" style="border:2px solid red;" title="google map"></iframe>
+	
+	<script>
+		<!-- 在網址後面加上LOC=xxxx,xxxx的座標 可以得到相應的GOOGLE MAP位置 -->
+		var X = decodeURIComponent(GetUrlVar('loc'));
+		f(X);
+	</script>
+	
+  </body>
+</html>

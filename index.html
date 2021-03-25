@@ -1,0 +1,512 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Lynn's Blog</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		
+		<!--Import Google Icon Font-->
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<!-- Compiled and minified CSS 不採用-->
+		
+		<!-- Compiled and minified JavaScript -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+		
+		<!--CSS-->
+		<style type="text/css">
+		
+		@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
+		
+		div {
+			font-family: 'Caveat', cursive;
+		}
+		
+		#BoxText1 {
+			width:233px;
+			border:2px white solid;
+			padding:10px;
+			box-shadow:1px 1px 3px gray;
+			margin-right:8px;
+		}
+		
+		#img1{
+			box-shadow:1px 1px 3px gray;
+			margin-right:8px;
+		}
+		
+		#title{
+			font-family:微軟正黑體;
+			font-weight:bold;
+			color:#FF7F50;
+		
+		}
+		
+		#description{
+			font-family:微軟正黑體;	
+			color:	#808080;
+			font-size:12px;
+			line-height: 18px;
+			text-align:left;
+		}
+		
+		#info{
+			text-align:center;
+			line-height: 18px;
+		}
+		
+		body div{
+			display: inline-block;
+			text-align: center;
+		}
+		.initImg{
+			width: 233px;
+			height: 233px;
+		}
+		.fillImg{
+			object-fit: fill;
+		}
+		#w{
+			width:100px;
+		}
+		
+		#gotop {
+			position:fixed;
+			z-index:90;
+			right:30px;
+			bottom:31px;
+			display:none;
+			width:50px;
+			height:50px;
+			color:black;
+			background:#E6E6FA;
+			line-height:50px;
+			border-radius:50%;
+			transition:all 0.5s;
+			text-align: center;
+			box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+		}
+		#gotop :hover{
+			background:#0099CC;
+		}
+		</style>
+		
+		<!--回傳表單-->
+		<!-- 利用Tabletop.JS讀取Google Sheet https://github.com/jsoma/tabletop -->
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
+		<script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js'/>;</script>
+		
+		<!--My favorite-->
+		<script type='text/javascript'> 
+		var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/1vV4DPIkxp98bzHbu1KshJCd-c2uYqgTsPBz-T1G8fxQ/pubhtml';
+
+		function init() {
+			Tabletop.init( { key: publicSpreadsheetUrl,
+							callback: showInfo,   //呼叫要執行的function
+							simpleSheet: true } )
+		}
+	  
+		function showInfo(data, tabletop) { //這個function會被呼叫表示資料已經到手，已和資料表連線成功
+			//alert('Successfully processed!')
+			console.log(data);
+	 
+			var text = "";
+			var i;
+			for (i = 0; i < data.length; i++) {
+			  //text += '<div class="col s1">' + names[i] + '</div>';
+				text += '<div class="col-4 col-6-medium col-12-small">';
+				text +=	'<a href="page2.html?pid=' + i + '">';
+				text += '<a href="#" class="image fit"><img id="img1" src="' + data[i].imgurl + '" class="initImg fillImg" alt=""></a>';
+				text += '<div id="BoxText1" ><div id="title">〔' + data[i].Name + '〕</div><br>';
+				text +=	'<div id="description" >' + data[i].description + '</div><br>';	
+				text +=	'<div id="info"><a target="_blank" href="' + data[i].bookstore + '">' + data[i].species + '</a></div><br>';
+				//text += '<a target="_blank" href="page3.html">More Information</a>';
+				text += '<a target="_blank" href="page2.html?pid=' + i + '">More Information</a>';
+				text += '</div>';
+				text += '</div>';
+				
+			}
+			document.getElementById("demo").innerHTML = text; <!--demo-->
+		}
+	 
+		window.addEventListener('DOMContentLoaded', init) //觸發"網頁全部載入"事件，完成後會觸發init
+		</script>
+	
+		<!--記帳功能-->
+		<script type="text/javascript">
+			function formresponse() {
+			 var d = document.forms["form1"]["date"].value;
+			 var m = document.forms["form1"]["money"].value;
+			 var i = document.forms["form1"]["item"].value;
+			 var str="";
+			 if (d==null || d=="")
+				{
+			  //alert("姓名不可為空白!");
+			  //return false;
+				str+="姓名不可為空白!\n";
+				}
+			 if (m==null || m=="")
+				{
+			  //alert("電話不可為空白!");
+			  //return false;
+				str+="電話不可為空白!";
+				}
+			 if (i==null || i=="")
+				{
+			  //alert("電話不可為空白!");
+			  //return false;
+				str+="電話不可為空白!";
+				}	
+			 if(str != "")
+				{
+				alert(str);
+				return false;
+				}
+			 else
+				{
+			  var MySubmit = "https://docs.google.com/forms/d/e/1FAIpQLSchyurQEeGTDijuM7ijgJm7iHwiYynL_j72lt3Luh1IOL3KlA/formResponse?usp=pp_url&entry.1288585206="+d+"&entry.1845335771="+m+"&entry.124224334="+i;
+			  //  MySubmit = "https://docs.google.com/forms/d/e/1FAIpQLSfJXPNAkM_RG_ktThZmVr0nEAEGExFt_vyQyemzsOIwkrj7FA/formResponse?usp=pp_url&entry.第一題的編號="+m+"&entry.第二題的編號="+d;
+			  //記得把網址的formview改成formResponse才能直接回應
+			  var NewOpen = window.open(MySubmit);
+			  sleep(1000);
+			  NewOpen.opener=null;
+			  NewOpen.close();
+				}
+
+			}
+		</script>
+		
+		<!--使用Google Map API功能-->
+		<script>
+			function f(loc) {
+				var str = "https://www.google.com.tw/maps?f=q&hl=zh-TW&q="+loc+"&z=16&t=q&output=embed";
+				document.getElementById("loc").setAttribute("src", str); 
+			}
+			function GetUrlVar(VarName) {
+			  name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+			  var regexS = "[\\?&]" + VarName + "=([^&#]*)";
+			  var regex = new RegExp(regexS);
+			  var results = regex.exec(window.location.href);
+			  if (results == null)
+				 return "";
+			  else
+				 return results[1];
+			}
+		</script>
+		
+		<!--photo輪播-->
+		<script>
+
+			var z = 0; //global variable
+			var photo = ["images/pic1.jpg",
+						  "images/pic2.jpg",
+						  "images/pic3.jpg", 
+						  "images/pic4.jpg",
+						  "images/pic5.jpg",
+						  //"https://images.pexels.com/photos/2643812/pexels-photo-2643812.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+						  // "https://images.pexels.com/photos/1490908/pexels-photo-1490908.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+						  //"https://images.pexels.com/photos/1302290/pexels-photo-1302290.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+						  //"https://images.pexels.com/photos/164186/pexels-photo-164186.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+						  //"https://images.pexels.com/photos/1440403/pexels-photo-1440403.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+						  //"https://images.pexels.com/photos/37401/dog-cute-pet.jpg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+						  //"https://images.pexels.com/photos/731553/pexels-photo-731553.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+						  ];
+		</script>
+		<script><!-- func code -->	
+			var myVar; //需為整體性變數
+
+			function myFunction1(x) {
+
+			  if((x == -1) && (z<=0)) {
+				return
+			  }
+			  else if((x == 1) && (z == (photo.length-1))) {
+				return
+			  }
+			  else
+				z=z+x;
+				document.getElementById("pho").innerHTML = '<img src="' + photo[z] + '" alt="Girl in a jacket" width="340" <div style="border-width:4px;border-style:dashed;border-color:#B87800;padding:5.5px 6px;">';
+			}
+
+			function autoSliding(){
+				if (z== photo.length-1) z=-1; //表示最後一張圖片，所以將i設為-1
+				z = z+1; //變成輪播
+				document.getElementById("pho").innerHTML = '<img src="' + photo[z] + '" alt="Girl in a jacket" width="340"<div style="border-width:4px;border-style:dashed;border-color:#B87800;padding:5.5px 6px;">';
+			}
+
+			function play(){
+				if(myVar != null) clearInterval(myVar);
+				//if(!myVar) clearInterval(myVar);
+				myVar = setInterval(autoSliding, 3000);
+			}
+
+			function stop(){
+				clearInterval(myVar);
+			}
+		</script>
+		
+		<!--抓取痞客幫API-->
+		<script>
+			var xmlhttp = new XMLHttpRequest();
+			var url = "https://emma.pixnet.cc/mainpage/blog/categories/hot/27?page=1&per_page=10&api_version=2&format=json";
+
+			xmlhttp.onreadystatechange = function() {
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+					var myArr = JSON.parse(xmlhttp.responseText);
+					myFunction(myArr);
+				}
+			}
+			xmlhttp.open("GET", url, true);
+			xmlhttp.send();
+
+			function myFunction(arr) {
+				var data = arr.articles;
+				var out = "";
+				var i;
+				for (i = 0; i < data.length; i++) {
+					if ( data[i].thumb != "" ) out += '<img src="' + data[i].thumb + '" />';
+					if ( data[i].title != "" ) out += '<p><a href="' + data[i].link + '" target="_blank">' + data[i].title + '</a></p>';
+			
+					
+				}
+				document.getElementById("pixnet-stuff").innerHTML = out;
+			}
+		</script>
+		
+		<!--置頂箭頭-->
+		<script>
+		$(function() {
+			/* 按下GoTop按鈕時的事件 */
+			$('#gotop').click(function(){
+				$('html,body').animate({ scrollTop: 0 }, 'slow');   /* 返回到最頂上 */
+				return false;
+			});
+			
+			/* 偵測卷軸滑動時，往下滑超過400px就讓GoTop按鈕出現 */
+			$(window).scroll(function() {
+				if ( $(this).scrollTop() > 400){
+					$('#gotop').fadeIn();
+				} else {
+					$('#gotop').fadeOut();
+				}
+			});
+		});
+		</script>   
+		
+		<!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		
+	</head>
+	
+	
+	<body class="is-preload">
+
+		<!-- Wrapper-->
+			<div id="wrapper">
+
+				<!-- Nav -->
+					<nav id="nav">
+						<a href="#" class="icon solid fa-home"><span>Home</span></a>
+						<a href="#work" class="icon solid fa-heart"><span>My Favorite</span></a>
+						<a href="#Expenses" class="icon solid fa-money-bill-alt"><span>Expenses</span></a>
+						<a href="#eat" class="icon solid fa-location-arrow"><span>Eatings</span></a>
+						<a href="#recipe" class="icon solid fa-folder"><span>Recipe</span></a>
+						<a href="#photo" class="icon solid fa-image"><span>Photos</span></a>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+					
+					<!-- 置頂按鈕 -->
+						<a href="https://www.blogger.com/blogger.g?blogID=2031514508322140995#" id="gotop">
+						   <i class="fa fa-angle-up"></i>
+						</a>
+					
+						<!-- Me -->
+							<article id="home" class="panel intro">
+								<header>
+									<h1>Lynn</h1>
+									<p>Welcome My Blog.</p>
+								</header>
+								<a href="#work" class="jumplink pic">
+									<span class="arrow icon solid fa-chevron-right"><span>See my work</span></span>
+									<img src="images/ling.jpg" alt="" />
+								</a>
+							</article>
+
+						<!-- my favorite -->
+							<article id="work" class="panel">
+								<header>
+									<h2>My Favorite</h2>
+								</header>
+								<p>
+									The world is like a mirror: Frown at it and it frowns at you; smile, and it smiles too.
+								</p>
+								
+								
+								<div class="row" id="demo"></div>
+								
+								<br>
+								<section>
+									<div class="row">
+									
+										<div class="col-4 col-6-medium col-12-small">
+											<a href="#" class="image fit"><img src="images/pic01.jpg" alt=""></a>
+											<div id="BoxText1" >To be continued...</div>
+										</div>
+										<div class="col-4 col-6-medium col-12-small">
+											<a href="#" class="image fit"><img src="images/pic02.jpg" alt=""></a>
+											<div id="BoxText1" >To be continued...</div>
+										</div>
+										<div class="col-4 col-6-medium col-12-small">
+											<a href="#" class="image fit"><img src="images/pic03.jpg" alt=""></a>
+											<div id="BoxText1" >To be continued...</div>
+										</div>
+										<div class="col-4 col-6-medium col-12-small">
+											<a href="#" class="image fit"><img src="images/pic04.jpg" alt=""></a>
+											<div id="BoxText1" >To be continued...</div>
+										</div>
+										<div class="col-4 col-6-medium col-12-small">
+											<a href="#" class="image fit"><img src="images/pic05.jpg" alt=""></a>
+											<div id="BoxText1" >To be continued...</div>
+										</div>
+										<div class="col-4 col-6-medium col-12-small">
+											<a href="#" class="image fit"><img src="images/pic06.jpg" alt=""></a>
+											<div id="BoxText1" >To be continued...</div>
+										</div>
+										
+									</div>
+								</section>
+							</article>
+
+						<!-- Expenses -->
+							<article id="Expenses" class="panel">
+								<header>
+									<h2>Track Expenses</h2>
+								</header>
+								<!--<form action="#" method="post">-->
+									<div class="row">
+									<form class="col-12" name="form1" action="javascript:formresponse();">
+									  
+									  <div class="row">
+										<div class="col-6 col-12-medium">
+										  <input id="date" type="text" name="date" class="validate" placeholder="Date">
+										<!--<label for="name">name</label>-->
+										</div>
+									  
+									  
+										<div class="col-6 col-12-medium">
+										  <input id="money" type="text" name="money" class="validate" placeholder="Money" />
+										  <!--<label for="money">money</label>-->
+										</div>
+									  
+									 
+										<div class="col-12">
+										  <input id="item" type="text" name="item" class="validate" placeholder="Item">
+										  <!--<label for="money">money</label>-->
+										</div>
+									  
+									  
+										<div class="col-12">
+										<button class="btn waves-effect waves-light" type="submit" name="action">
+											<i class="material-icons right">send</i>
+									</button>
+										  </div>
+										</div>
+									  </div>
+								</form>
+								</form>
+							</article>
+						
+						<!--Google Map API-->
+							<article id="eat" class="panel">
+								<header>
+									<h2>Eatings</h2>
+								</header>
+								
+								　<div style="float:middle">
+										<span style="width:220px;border:3px chocolate double;box-shadow:1px 1px 6px gray;margin-right:8px;">Breakfast </span><br>
+										<a href="javascript:f('24.11411811864132, 120.66585865096829') ;"style="font-size:13px;font-family:微軟正黑體;">小時候</a>、
+										<a href="javascript:f('24.132394790313743, 120.67810552366147') ; "style="font-size:13px;font-family:微軟正黑體;">土木公社</a><br>
+										<a href="javascript:f('24.12321698144228, 120.67022499667765') ;"style="font-size:13px;font-family:微軟正黑體; ">迷霧</a>、
+										<a href="javascript:f('24.149129433975556, 120.67674728055636') ;"style="font-size:13px;font-family:微軟正黑體; ">找餐</a><br>
+										
+										<span style="width:100px;border:3px chocolate double;box-shadow:1px 1px 6px gray;margin-right:8px;">Lunch</span><br>
+										<a href="javascript:f('24.14206898804965, 120.67029845435032') ;"style="font-size:13px;font-family:微軟正黑體; ">吃光食堂</a>、
+										<a href="javascript:f('24.149803479998482, 120.66087651600462') ;"style="font-size:13px;font-family:微軟正黑體; ">無理 WULI</a><br>
+										
+										<span style="width:100px;border:3px chocolate double;box-shadow:1px 1px 6px gray;margin-right:8px;">Dinner</span><br>					
+										<a href="javascript:f('24.150537715612195, 120.66190648426638') ;"style="font-size:13px;font-family:微軟正黑體; ">萬客什鍋</a>、
+										<a href="javascript:f('24.150430027991966, 120.666895393034') ; "style="font-size:13px;font-family:微軟正黑體;">別嗆大叔</a><br>
+										<a href="javascript:f('24.139604487531805, 120.66033869667805') ;"style="font-size:13px;font-family:微軟正黑體; ">大師兄銷魂麵舖</a><br>
+										
+										<span style="width:100px;border:3px chocolate double;box-shadow:1px 1px 6px gray;margin-right:8px;">Dessert</span><br>										
+										<a href="javascript:f('24.13555818848106, 120.6610455186232') ;"style="font-size:13px;font-family:微軟正黑體; ">旅禾泡芙</a>、
+										<a href="javascript:f('24.139791759001046, 120.67989224851506') ;"style="font-size:13px;font-family:微軟正黑體; ">東東芋圓</a><br>
+										
+										<span style="width:100px;border:3px chocolate double;box-shadow:1px 1px 6px gray;margin-right:8px;">Midnight</span><br>
+										<a href="javascript:f('24.15084586957101, 120.64927661742395') ;"style="font-size:13px;font-family:微軟正黑體; ">太初麵食</a>、								
+										<a href="javascript:f('24.140721862917424, 120.68180198133373') ;"style="font-size:13px;font-family:微軟正黑體; ">9PM 玖點</a><br>	
+								  </div>
+								　
+								　<div style="float:right;">
+										<iframe id="loc" src="https://www.google.com.tw/maps?f=q&hl=zh-TW&q=24.121308,120.677175&z=16&t=q&output=embed" height="400" width="500" style="border:2px solid indianred;" title="google map"></iframe>
+								  </div>
+								  
+								<script>
+									<!-- 在網址後面加上LOC=xxxx,xxxx的座標 可以得到相應的GOOGLE MAP位置 -->
+									var X = decodeURIComponent(GetUrlVar('loc'));
+									f(X);
+								</script>				
+							</article>
+						
+						<!--Recipe-->
+							<article id="recipe" class="panel">
+								<header>
+									<h2>Pixnet Recipe Sharing</h2>
+								</header>
+								
+								<div id="pixnet-stuff">
+								</div>
+							</article>
+						
+						<!-- Photos -->
+							<article id="photo" class="panel">
+								<header>
+									<h2>My Photos</h2>
+								</header>
+								<p id="pho">
+
+									<img src="images/pic1.jpg" alt="Girl in a jacket" width="340" <div style="border-width:4px;border-style:dashed;border-color:#B87800;padding:5.5px 6px;">
+									
+								</p>
+
+								<button onclick="myFunction1(-1)">Prev</button>
+								<button onclick="myFunction1(1)">Next</button>
+								<button onclick="play()">Play</button>
+								<button onclick="stop()">Stop</button>
+
+							</article>
+						
+					</div>
+
+				
+				<!-- Footer -->
+					<div id="footer">
+						<ul class="copyright">
+							<li style="font-size:15px;">&copy; Dream Big.</li><li style="font-size:15px;">Design: <a href="https://www.instagram.com/smile871031/">LNYY</a></li>
+						</ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

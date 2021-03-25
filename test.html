@@ -1,0 +1,207 @@
+<!DOCTYPE HTML>
+<!--
+	Astral by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Astral by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		
+		
+		<script type="text/javascript">
+			function formresponse() {
+ var m = document.forms["form1"]["name"].value;
+ var d = document.forms["form1"]["tel"].value;
+ var str="";
+ if (m==null || m=="")
+    {
+  //alert("姓名不可為空白!");
+  //return false;
+    str+="姓名不可為空白!\n";
+	}
+ if (d==null || d=="")
+    {
+  //alert("電話不可為空白!");
+  //return false;
+	str+="電話不可為空白!";
+	}
+ if(str != "")
+	{
+	alert(str);
+	return false;
+	}
+ else
+    {
+  var MySubmit = "https://docs.google.com/forms/d/e/1FAIpQLSedUqJU1ZoYkVJPgt3-9gDGTIqq2Vg7ASjhlMEMqXljnKKOXw/formResponse?usp=pp_url&entry.108399764="+m+"&entry.284559868="+d;
+  //  MySubmit = "https://docs.google.com/forms/d/e/1FAIpQLSfJXPNAkM_RG_ktThZmVr0nEAEGExFt_vyQyemzsOIwkrj7FA/formResponse?usp=pp_url&entry.第一題的編號="+m+"&entry.第二題的編號="+d;
+  //記得把網址的formview改成formResponse才能直接回應
+  var NewOpen = window.open(MySubmit);
+  sleep(1000);
+  NewOpen.opener=null;
+  NewOpen.close();
+    }
+
+}
+		</script>
+		<!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper-->
+			<div id="wrapper">
+
+				<!-- Nav -->
+					<nav id="nav">
+						<a href="#" class="icon solid fa-home"><span>Home</span></a>
+						<a href="#work" class="icon solid fa-folder"><span>Work</span></a>
+						<a href="#contact" class="icon solid fa-envelope"><span>Contact</span></a>
+						<a href="https://twitter.com/ajlkn" class="icon brands fa-twitter"><span>Twitter</span></a>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Me -->
+							<article id="home" class="panel intro">
+								<header>
+									<h1>Lynn</h1>
+									<p>Welcome my home.</p>
+								</header>
+								<a href="#work" class="jumplink pic">
+									<span class="arrow icon solid fa-chevron-right"><span>See my work</span></span>
+									<img src="images/me.jpg" alt="" />
+								</a>
+							</article>
+
+						<!-- Work -->
+							<article id="work" class="panel">
+								<header>
+									<h2>Work</h2>
+								</header>
+								<p>
+									Phasellus enim sapien, blandit ullamcorper elementum eu, condimentum eu elit.
+									Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia
+									luctus elit eget interdum.
+								</p>
+								<section>
+									<div class="row">
+										<div class="col-4 col-6-medium col-12-small">
+											<a href="#" class="image fit"><img src="images/pic01.jpg" alt=""></a>
+										</div>
+										<div class="col-4 col-6-medium col-12-small">
+											<a href="#" class="image fit"><img src="images/pic02.jpg" alt=""></a>
+										</div>
+										<div class="col-4 col-6-medium col-12-small">
+											<a href="#" class="image fit"><img src="images/pic03.jpg" alt=""></a>
+										</div>
+										<div class="col-4 col-6-medium col-12-small">
+											<a href="#" class="image fit"><img src="images/pic04.jpg" alt=""></a>
+										</div>
+										<div class="col-4 col-6-medium col-12-small">
+											<a href="#" class="image fit"><img src="images/pic05.jpg" alt=""></a>
+										</div>
+										<div class="col-4 col-6-medium col-12-small">
+											<a href="#" class="image fit"><img src="images/pic06.jpg" alt=""></a>
+										</div>
+										<div class="col-4 col-6-medium col-12-small">
+											<a href="#" class="image fit"><img src="images/pic07.jpg" alt=""></a>
+										</div>
+										<div class="col-4 col-6-medium col-12-small">
+											<a href="#" class="image fit"><img src="images/pic08.jpg" alt=""></a>
+										</div>
+										<div class="col-4 col-6-medium col-12-small">
+											<a href="#" class="image fit"><img src="images/pic09.jpg" alt=""></a>
+										</div>
+										<div class="col-4 col-6-medium col-12-small">
+											<a href="#" class="image fit"><img src="images/pic10.jpg" alt=""></a>
+										</div>
+										<div class="col-4 col-6-medium col-12-small">
+											<a href="#" class="image fit"><img src="images/pic11.jpg" alt=""></a>
+										</div>
+										<div class="col-4 col-6-medium col-12-small">
+											<a href="#" class="image fit"><img src="images/pic12.jpg" alt=""></a>
+										</div>
+									</div>
+								</section>
+							</article>
+
+						<!-- Contact -->
+							<article id="contact" class="panel">
+								<header>
+									<h2>Contact Me</h2>
+								</header>
+								
+									<div class="row">
+    <form class="col s12" name="form1" action="javascript:formresponse();">
+      
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="name" type="text" name="name" class="validate">
+          <label for="name">name</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="tel" type="text" name="tel" class="validate">
+          <label for="tel">tel</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12">
+		<button class="btn waves-effect waves-light" type="submit" name="action">Submit
+			<i class="material-icons right">send</i>
+	</button>
+          </div>
+        </div>
+      </div>
+								</form>
+							<!-- 原本的Contact -->
+									<!--<div>
+										<div class="row">
+											<div class="col-6 col-12-medium">
+												<input type="text" name="name" placeholder="Name" />
+											</div>
+											<div class="col-6 col-12-medium">
+												<input type="text" name="email" placeholder="Email" />
+											</div>
+											<div class="col-12">
+												<input type="text" name="subject" placeholder="Subject" />
+											</div>
+											<div class="col-12">
+												<textarea name="message" placeholder="Message" rows="6"></textarea>
+											</div>
+											<div class="col-12">
+												<input type="submit" value="Send Message" />
+											</div>
+										</div>
+									</div>-->
+								</form>
+							</article>
+
+					</div>
+
+				<!-- Footer -->
+					<div id="footer">
+						<ul class="copyright">
+							<li>&copy; Dream Big.</li><li>Design: <a href="http://html5up.net">LNYY</a></li>
+						</ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

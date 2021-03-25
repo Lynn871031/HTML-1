@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lynn's Blog</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		
+		<!--Import Google Icon Font-->
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<!-- Compiled and minified CSS 不採用-->
+		
+		<!-- Compiled and minified JavaScript -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+		
+		<!--CSS-->
+		<style type="text/css">
+		
+		@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
+		
+		div {
+			font-family: 'Caveat', cursive;
+		}
+		
+		#BoxText1 {
+			width:233px;
+			border:2px white solid;
+			padding:10px;
+			box-shadow:1px 1px 3px gray;
+			margin-right:8px;
+		}
+		
+		#img1{
+			box-shadow:1px 1px 3px gray;
+			margin-right:8px;
+		}
+		
+		#title{
+			font-family:微軟正黑體;
+			font-weight:bold;
+			color:#FF7F50;
+		
+		}
+		
+		#description{
+			font-family:微軟正黑體;	
+			color:	#808080;
+			font-size:20px;
+			line-height: 18px;
+			text-align:left;
+		}
+		
+		#info{
+			text-align:center;
+			line-height: 18px;
+		}
+		
+		body div{
+			display: inline-block;
+			text-align: center;
+		}
+		.initImg{
+			width: 233px;
+			height: 233px;
+		}
+		.fillImg{
+			object-fit: fill;
+		}
+		#w{
+			width:100px;
+		}
+		
+		#gotop {
+			position:fixed;
+			z-index:90;
+			right:30px;
+			bottom:31px;
+			display:none;
+			width:50px;
+			height:50px;
+			color:black;
+			background:#E6E6FA;
+			line-height:50px;
+			border-radius:50%;
+			transition:all 0.5s;
+			text-align: center;
+			box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+		}
+		#gotop :hover{
+			background:#0099CC;
+		}
+		</style>
+	
+	<!-- 利用Tabletop.JS讀取Google Sheet https://github.com/jsoma/tabletop -->
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
+	<script type='text/javascript'> 
+	
+	
+		//取得網址裡的參數
+		function GetUrlVar(VarName)
+		{
+		  name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+		  var regexS = "[\\?&]" + VarName + "=([^&#]*)";
+		  var regex = new RegExp(regexS);
+		  var results = regex.exec(window.location.href);
+		  if(results == null)
+			return "";
+		  else
+			return results[1];
+		}
+		
+		var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/1vV4DPIkxp98bzHbu1KshJCd-c2uYqgTsPBz-T1G8fxQ/pubhtml';
+
+		function init() {
+			Tabletop.init( { key: publicSpreadsheetUrl,
+							callback: showInfo,
+							simpleSheet: true } )
+		}
+
+		function showInfo(data, tabletop) {
+			// alert('Successfully processed!')
+			console.log(data);
+		
+			var n = decodeURIComponent(GetUrlVar('pid'));
+		
+			var str = "";
+			//var windowOpen = windowRef.location.href(data[i].href);
+			//var windowOpen = window.open(data[i].href);
+			//if (windowOpen == null || typeof(windowOpen)=='undefined'){
+			//	$('#feedback').html('已觸發：視窗無法開啟，請檢查你的瀏覽器設定。')
+			//} else {
+			//	$('#feedback').html('已觸發：視窗開啟成功了')
+			//}
+			
+			var intros=["原子習慣：細微改變帶來巨大成就的實證法則 Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones",
+						"這世界很煩，但你要很可愛",
+						"以我之名：寫給獨一無二的自己"]
+				
+				
+			
+
+
+			
+			document.getElementById("demo").innerHTML = intros[n];
+		}
+
+		window.addEventListener('DOMContentLoaded', init)
+	</script>
+	
+	<!--置頂箭頭-->
+		<script>
+	
+		$(function() {
+			/* 按下GoTop按鈕時的事件 */
+			$('#gotop').click(function(){
+				$('html,body').animate({ scrollTop: 0 }, 'slow');   /* 返回到最頂上 */
+				return false;
+			});
+			
+			/* 偵測卷軸滑動時，往下滑超過400px就讓GoTop按鈕出現 */
+			$(window).scroll(function() {
+				if ( $(this).scrollTop() > 400){
+					$('#gotop').fadeIn();
+				} else {
+					$('#gotop').fadeOut();
+				}
+			});
+		});
+		</script>
+		
+		
+		
+<head>
+
+<body class="is-preload">
+
+		<!-- Wrapper-->
+			<div id="wrapper">
+
+				<!-- Nav -->
+					<nav id="nav">
+						<a href="#" class="icon solid fa-home"><span>Home</span></a>
+						<a href="#work" class="icon solid fa-paper-plane"><span>My Favorite</span></a>
+						<a href="#Expenses" class="icon solid fa-money-bill-alt"><span>Expenses</span></a>
+						<a href="#eat" class="icon solid fa-bookmark"><span>Eatings</span></a>
+						<a href="#recipe" class="icon solid fa-folder"><span>Recipe</span></a>
+						<a href="#photo" class="icon solid fa-image"><span>Photos</span></a>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+					
+					<!-- 置頂按鈕 -->
+						<a href="https://www.blogger.com/blogger.g?blogID=2031514508322140995#" id="gotop">
+						
+						<!-- Me -->
+							<article id="work" class="panel intro">
+								<header>
+									<h1>Lynn</h1>
+									<p>Welcome My Blog.</p>
+								</header>
+								<div id="demo" class="col-4 col-6-medium col-12-small">
+									<a href="#" class="image fit"><img src="images/pic01.jpg" alt=""></a>
+									<div id="BoxText1" ></div>
+								</div>
+							</article>
+					
+								
+
+				
+				
+
+			</div>
+			<!-- Footer -->
+					<div id="footer">
+						<ul class="copyright">
+							<li style="font-size:15px;">&copy; Dream Big.</li><li style="font-size:15px;">Design: <a href="https://www.instagram.com/smile871031/">LNYY</a></li>
+						</ul>
+					</div>
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+</body>
+</html>
